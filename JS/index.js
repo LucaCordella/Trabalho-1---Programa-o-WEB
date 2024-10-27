@@ -43,8 +43,6 @@ btnRegistrarPonto.addEventListener("click", () => {
 
     dialogSelect.value = proxPonto[ultimoPonto];
 
-    //dialogHora.textContent = horaCompleta();
-
     dialogPonto.showModal();
 });
 
@@ -143,3 +141,98 @@ setInterval(atualizaHoraDialog, 1000);
 
 diaSemana.textContent = daySemana();
 diaMesAno.textContent = dataCompleta();
+
+
+
+// Seleção dos novos elementos de dialog
+const dialogPontoPassado = document.getElementById("dialog-ponto-passado");
+const dialogJustificarAusencia = document.getElementById("dialog-justificar-ausencia");
+
+// Botões de fechar
+const btnDialogFecharPassado = document.getElementById("btn-dialog-fechar-passado");
+const btnDialogFecharAusencia = document.getElementById("btn-dialog-fechar-ausencia");
+
+// Função para exibir dialog de ponto passado
+document.getElementById("btn-registrar-ponto-passado").addEventListener("click", () => {
+    dialogPontoPassado.showModal();
+});
+
+// Função para exibir dialog de justificar ausência
+document.getElementById("btn-justificar-ausencia").addEventListener("click", () => {
+    dialogJustificarAusencia.showModal();
+});
+
+// Função para fechar dialog de ponto passado
+btnDialogFecharPassado.addEventListener("click", () => {
+    dialogPontoPassado.close();
+});
+
+// Função para fechar dialog de justificativa de ausência
+btnDialogFecharAusencia.addEventListener("click", () => {
+    dialogJustificarAusencia.close();
+});
+
+// Função para registrar ponto passado
+document.getElementById("btn-dialog-registrar-ponto-passado").addEventListener("click", () => {
+    const dataPassado = document.getElementById("data-passado").value;
+    const tipoPontoPassado = document.getElementById("select-tipo-ponto-passado").value;
+
+    if (!dataPassado) {
+        alert("Por favor, selecione uma data válida para o registro passado.");
+        return;
+    }
+
+    const pontoPassado = {
+        "data": dataPassado,
+        "tipo": tipoPontoPassado,
+        "observacao": "Registro passado",
+    };
+
+    salvarRegistroLocalStorage(pontoPassado);
+    dialogPontoPassado.close();
+    alert("Ponto passado registrado com sucesso!");
+});
+
+// Função para enviar justificativa de ausência
+document.getElementById("btn-dialog-enviar-justificativa").addEventListener("click", () => {
+    const dataAusencia = document.getElementById("data-ausencia").value;
+    const justificativa = document.getElementById("justificativa-ausencia").value;
+
+    if (!dataAusencia || !justificativa) {
+        alert("Por favor, preencha a data e a justificativa.");
+        return;
+    }
+
+    const ausencia = {
+        "data": dataAusencia,
+        "justificativa": justificativa,
+        "observacao": "Ausência justificada"
+    };
+
+    salvarRegistroLocalStorage(ausencia);
+    dialogJustificarAusencia.close();
+    alert("Justificativa de ausência enviada com sucesso!");
+});
+
+
+
+const divAlertaPassado = document.getElementById("div-alerta-passado");
+
+divAlertaPassado.classList.remove("hidden");
+divAlertaPassado.classList.add("show");
+
+    setTimeout(() => {
+        divAlertaPassado.classList.remove("show");
+    divAlertaPassado.classList.add("hidden")
+    }, 5000);
+
+
+const divAlertaJustificativa = document.getElementById("div-alerta-justificativa");
+
+divAlertaJustificativa.classList.remove("hidden");
+divAlertaJustificativa.classList.add("show");
+
+    setTimeout(() => {
+        divAlertaJustificativa.classList.remove("show");
+    divAlertaJustificativa.classList.add("hidden")
+    }, 5000);

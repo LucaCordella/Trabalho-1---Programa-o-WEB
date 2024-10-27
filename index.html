@@ -40,18 +40,57 @@
 
     </dialog>
 
-    <div id="div-btn-registrar-ponto">
-        <button id="btn-registrar-ponto">Registrar Ponto!</button>
-    </div>
+
+<div id="div-btn-registrar-ponto">
+    <button onclick="registrarPonto()" id="btn-registrar-ponto">Registrar Ponto</button>
+    <button onclick="registrarPontoPassado()" id="btn-registrar-ponto-passado">Registrar Ponto Passado</button>
+    <button onclick="justificarAusencia()" id="btn-justificar-ausencia">Justificar Ausência</button>
+</div>
+
+
+
+<!-- Dialog para registrar ponto passado -->
+<dialog id="dialog-ponto-passado">
+    <p id="dialog-data-passado">Data</p>
+    <p id="dialog-hora-passado">Hora</p>
+    <input type="date" id="data-passado" required>
+    <select id="select-tipo-ponto-passado">
+        <option value="entrada">Entrada</option>
+        <option value="intervalo">Intervalo</option>
+        <option value="volta-intervalo">Volta Intervalo</option>
+        <option value="saida">Saída</option>
+    </select>
+    <button id="btn-dialog-registrar-ponto-passado">Registrar Ponto Passado</button>
+    <button id="btn-dialog-fechar-passado">X</button>
+</dialog>
+
+<!-- Dialog para justificar ausência -->
+<dialog id="dialog-justificar-ausencia">
+    <p id="dialog-data-ausencia">Data</p>
+    <input type="date" id="data-ausencia" required>
+    <textarea id="justificativa-ausencia" placeholder="Justifique sua ausência..."></textarea>
+    <button id="btn-dialog-enviar-justificativa">Enviar Justificativa</button>
+    <button id="btn-dialog-fechar-ausencia">X</button>
+</dialog>
+
+
 
     <div class="hidden" id="div-alerta">
         <p>Ponto registrado com sucesso!</p>
     </div>
 
+    <div class="hidden" id="div-alerta-passado">
+        <p>Ponto Passado registrado com sucesso!</p>
+    </div>
+
+    <div class="hidden" id="div-alerta-justificativa">
+        <p>Justificativa registrada com sucesso!</p>
+    </div>
+
     <script src="js/index.js"></script>
     <script src="JS/relatorio.js"></script>
 
-    <footer id="id-rodape">Projeto em Desevolvimento - Sistema de Controle de Ponto (Luca Cordella) - 2024</footer>
+    <footer id="id-rodape">Sistema de Controle de Ponto (Luca Cordella) - 2024</footer>
 
 </body>
 </html>
